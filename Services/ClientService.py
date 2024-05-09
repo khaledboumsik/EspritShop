@@ -16,6 +16,6 @@ class ClientService:
     
     def get_client_by_ID(self, ID):
         session = self.Session()
-        my_user = session.query(Client).filter_by(identifier=ID).first()  # Query Client by ID
+        selected_client = session.query(Client).filter_by(identifier=ID).first()  # Query Client by ID
         session.close() 
-        return {"id": my_user.identifier, "name": my_user.LoginName} if my_user else {}
+        return {"id": selected_client.identifier, "name": selected_client.LoginName, "PhoneNumber":selected_client.PhoneNumber ,"Email": selected_client.Email} if selected_client else {}
