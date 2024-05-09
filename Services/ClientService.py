@@ -13,3 +13,9 @@ class ClientService:
         session.add(client)
         session.commit()
         session.close()
+    
+    def get_client_by_ID(self, ID):
+        session = self.Session()
+        my_user = session.query(Client).filter_by(identifier=ID).first()  # Query Client by ID
+        session.close() 
+        return {"id": my_user.identifier, "name": my_user.LoginName} if my_user else {}

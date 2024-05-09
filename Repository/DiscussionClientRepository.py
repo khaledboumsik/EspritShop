@@ -7,7 +7,7 @@ class DiscussionClient(Base):
     __tablename__="discussionclient"
     identifier=Column("DiscussionID",Integer,primary_key=True)
     Messages=Column("Messages",String)
-    AdminID=Column("AdminID",int)
+    AdminID=Column("AdminID",ForeignKey=("admin.ID"))
     Status=Column("Status",Boolean)
     WorkID=Column("WorkID",ForeignKey=("clientproject.WorkID"))
     

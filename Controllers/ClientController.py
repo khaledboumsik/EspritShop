@@ -10,6 +10,12 @@ app = Flask(__name__)
 SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:@localhost:3306/espritshopmaindb"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
+@app.route("/users/<id>", methods=["GET"])  # Moved above the POST route
+def get_user_by_id(id):
+    client_service = ClientService(engine)
+    information = client_service.get_client_by_ID(ID=id)
+    return jsonify(information)
+
 @app.route('/users', methods=['POST'])
 def create_user():
     email = request.json.get('Email')
@@ -28,12 +34,12 @@ def create_user():
         confirmation.append("PhoneNumber")
     if confirmation:
         for mistake in confirmation:
-            error_message += mistake + " is missing \n"
+            error_message += mistake + " is missing  | | "
     if (not vertify_email(email)) or len(email)>100:
         print(email,vertify_email(email))
-        error_message+="Email must be valid and it's length dosent go over 100 letters\n"
+        error_message+="Email must be valid and it's length dosent go over 100 letters | | "
     if not isinstance(phoneNumber,int) or len(str(phoneNumber))>12:
-        error_message+="PhoneNumber must be composed of only numbers and dosent go over 12 number \n"
+        error_message+="PhoneNumber must be composed of only numbers and dosent go over 12 number  | | "
     if len(password)<10:
         error_message+="Password must be at least 10 chacters long"
     if error_message=="":
@@ -42,5 +48,6 @@ def create_user():
         return jsonify({'message': 'User created successfully'}), 201
     else:
         return jsonify({'error': error_message}), 400
+
 if __name__ == '__main__':
     app.run(debug=True)
