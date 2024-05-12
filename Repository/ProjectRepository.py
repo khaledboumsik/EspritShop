@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine,ForeignKey,String,Column,Integer,CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker,relationship
-Base=declarative_base()
+from main import db
 
-class Project(Base):
+class Project(db.Model):
     __tablename__ = "project"
     Identifier = Column("ID", Integer, primary_key=True, autoincrement=True)
     About = Column("About", String)

@@ -1,10 +1,9 @@
 from sqlalchemy import create_engine,ForeignKey,String,Column,Integer,CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-Base=declarative_base()
-class Client(Base):
+from main import db
+class Client(db.Model):
     __tablename__ = "client"
-    print("workkkkk")
     identifier = Column("ID", Integer, primary_key=True, autoincrement=True)
     LoginName = Column("LoginName", String)
     Password = Column("Password", String)

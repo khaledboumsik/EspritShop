@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine,ForeignKey,Boolean,String,Column,Integer,CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-Base=declarative_base()
+from main import db
 
-class DiscussionClient(Base):
+class DiscussionClient(db.Model):
     __tablename__="discussionclient"
     identifier=Column("DiscussionID",Integer,primary_key=True)
     Messages=Column("Messages",String)

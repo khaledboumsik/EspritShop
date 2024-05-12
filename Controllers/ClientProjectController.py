@@ -12,9 +12,18 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 @job_blue_print.route("/job_by_id/<id>", methods=["GET"])  
 def get_job_by_id(id):
     job_service = ClientProjectService(engine)
-    information = job_service.get_client_by_ID(ID=id)
+    information = job_service.get_job_by_ID(ID=id)
     return jsonify(information)
-
+@job_blue_print.route("/job_by_project_id/<id>", methods=["GET"])  
+def get_jobs_by_project_id(id):
+    job_service = ClientProjectService(engine)
+    information = job_service.get_jobs_by_project(ProjectID=id)
+    return jsonify(information)
+@job_blue_print.route("/job_by_client_id/<id>", methods=["GET"])  
+def get_jobs_by_client_id(id):
+    job_service = ClientProjectService(engine)
+    information = job_service.get_jobs_by_client(ClientID=id)
+    return jsonify(information)
 @job_blue_print.route('/job', methods=['POST'])
 def create_job():
     clientID = request.json.get('ClientID')

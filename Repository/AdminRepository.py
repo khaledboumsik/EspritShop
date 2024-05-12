@@ -2,9 +2,9 @@ from sqlalchemy import create_engine,ForeignKey,Boolean,String,Column,Integer,CH
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
-Base=declarative_base()
+from main import db
 
-class Admin(Base):
+class Admin(db.Model):
     __tablename__="admin"
     identifier=Column("ID",Integer,primary_key=True,autoincrement=True)
     Login=Column("Login",String)

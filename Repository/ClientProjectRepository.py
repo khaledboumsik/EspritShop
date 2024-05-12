@@ -7,12 +7,12 @@ from sqlalchemy.orm import relationship
 from .ClientRepository import Client
 from .ProjectRepository import Project
 from .AdminRepository import Admin
-Base = declarative_base()
+from main import db
 from Repository.ClientRepository import Client
 from Repository.ProjectRepository import Project
 from Repository.AdminRepository import Admin
 
-class ClientProject(Base):
+class ClientProject(db.Model):
     __tablename__ = "clientproject"
 
     identifier = Column("WorkID", Integer, primary_key=True, autoincrement=True)
