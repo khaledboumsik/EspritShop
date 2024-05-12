@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine,ForeignKey,Boolean,String,Column,Integer,CHAR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import relationship
 Base=declarative_base()
 
 class Admin(Base):
@@ -11,6 +12,7 @@ class Admin(Base):
     Status=Column("Status",Boolean)
     PhoneNumber=Column("PhoneNumber",Integer)
     Email=Column("Email",String)
+    admin_projects = relationship("ClientProject", back_populates="admin")
     def __init__(self,Login,Password,Status,PhoneNumber,Email):
         self.Login=Login
         self.Password=Password

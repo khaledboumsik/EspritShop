@@ -11,6 +11,7 @@ class Project(Base):
     Name = Column("Name", String)
     Price = Column("Price", Integer)
     Demo = Column("Demo", String)
+    project_clients = relationship("ClientProject", back_populates="project")
     
     def __init__(self, About, Degree, Name, Price, Demo):
         self.About = About
